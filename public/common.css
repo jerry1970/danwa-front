@@ -1,0 +1,25 @@
+/* danwa common.css, 2014 */
+
+.notification {
+    line-height: 2rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+}
+.notification .close {
+    margin-top: 0.2rem;
+}
+
+.post-user-avatar {
+    margin-right: 1rem;
+}
+.post-user-avatar img {
+    width: 60px;
+    height: 60px;
+    background: red;
+}
+.post-created-at {
+    color: #999;
+}

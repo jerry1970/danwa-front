@@ -19,9 +19,11 @@
     </head>
     
     <body>
+    
+        <div class="notifications"></div>
         
         <div class="container">
-            <h1>Danwa users</h1>
+            <h1>Danwa</h1>
             <hr />
             <div class="page" id="page" style="opacity: 0;">
             </div>
@@ -30,25 +32,26 @@
     </body>
 </html>
 
-<script type="text/template" id="template-user-list">
-<table class="table">
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Username</th>
-            <th>E-mail</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    <% _.each(users, function(model) { %>
-        <tr>
-            <td><%= model.id %></td>
-            <td><%= model.username %></td>
-            <td><%= model.email %></td>
-            <td class="text-right"><button class="btn btn-default">Edit</button></td>
-        </tr>
+<script type="text/template" id="template-post-list">
+    <% _.each(posts, function(post) { %>
+    <div class="post">
+        <div class="post-user-avatar pull-left">
+            <% if (post.user.avatar.length > 0) { %>
+            <img class="user-avatar" src="<%= post.user.avatar %>" />
+            <% } %>
+        </div>
+        <div class="post-content">
+            <strong class="post-user-username">@<%= post.user.username %></strong>
+            <span class="post-created-at"><%= post.created_at %></span>
+            <br />
+            <%= post.content %>
+        </div>
+    </div>
     <% }); %>
-    </tbody>
-</table>
+</script>
+<script type="text/template" id="template-notification">
+    <div class="notification alert alert-<%= notification.type %>">
+        <a href="#" class="close">&times;</a>
+        <strong>Error:</strong> <%= notification.text %>
+    </div>
 </script>
