@@ -15,19 +15,48 @@ html * {
     font-family: inherit;
     font-size: inherit;
 }
+ul {
+    list-style-type: none;
+}
+a {
+    color: #4f2391;
+}
+a:link, a:visited {
+    text-decoration: none;
+}
+
+/* overrule the default container class @ max width */
+@media (min-width: 992px) {
+    .container {
+        width: 750px;
+    }
+}
 
 /* header */
-body > header {
+.site-header {
     height: 84px;
-    background-color: #4f2391;
+    margin-bottom: 1.5rem;
+    padding: 16px 0;
     
-    margin-bottom: 2rem;
-    padding: 16px;
+    background-color: #4f2391;
 }
-body > header .logo {
+.site-header .logo {
+    float: left;
     width: 64px;
-    fill: #fff;
     margin-left: -6px;
+    
+    fill: #fff;
+}
+.site-header nav {
+    float: right;
+    margin-top: 0.7rem;
+    font-size: 1.5em;
+    
+    color: rgba(255, 255, 255, 0.4);
+}
+.site-header nav i.fa:hover {
+    color: rgba(255, 255, 255, 1);
+    cursor: pointer;
 }
 
 /* notifications */
@@ -43,6 +72,52 @@ body > header .logo {
     margin-top: 0.2rem;
 }
 
+/* modal popover */
+.modal-popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid #999;
+}
+.modal-popover:after {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    margin-left: -4px;
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-bottom: 8px solid #999;
+}
+.modal-popover.modal-popover-source-post textarea {
+    height: 100px;
+    width: 250px;
+    margin-bottom: 0.5rem;
+}
+.modal-popover.modal-popover-source-settings ul {
+    margin: -0.5rem -0.75rem;
+}
+.modal-popover.modal-popover-source-settings li {
+    padding: 0;
+    
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.modal-popover.modal-popover-source-settings li a {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+.modal-popover.modal-popover-source-settings li a:hover {
+    background: rgba(0, 0, 0, 0.05);
+    text-decoration: none;
+}
+.modal-popover.modal-popover-source-settings li:last-child {
+    border: 0;
+}
+
 /* posts */
 .post {
     min-height: 60px;
@@ -56,6 +131,25 @@ body > header .logo {
     margin-right: 1rem;
 }
 .post-user-avatar img {
-    width: 52px;
-    height: 52px;
+    width: 53px;
+    height: 53px;
+}
+
+/* animation class */
+.animate-fast {
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+}
+
+/* default classes */
+.width-full {
+    width: 100%;
+}
+
+/* overrules */
+textarea {
+    resize: none;
 }
