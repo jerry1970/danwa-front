@@ -35,7 +35,7 @@
             _.bindAll(this, 'render');
         },
         render: function() {
-            var allPosts = new AllPosts([], {id: '54a31c8af2b08'});
+            var allPosts = new AllPosts([], {id: '54b6e115d6456'});
             allPosts.fetch({
                 success: function(posts) {
                     var posts = posts.shift();

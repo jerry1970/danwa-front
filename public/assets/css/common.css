@@ -1,0 +1,61 @@
+/* danwa common.css, 2014 */
+
+/* general */
+* {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+html {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11pt;
+}
+html * {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* header */
+body > header {
+    height: 84px;
+    background-color: #4f2391;
+    
+    margin-bottom: 2rem;
+    padding: 16px;
+}
+body > header .logo {
+    width: 64px;
+    fill: #fff;
+    margin-left: -6px;
+}
+
+/* notifications */
+.notification {
+    line-height: 2rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 0;
+}
+.notification .close {
+    margin-top: 0.2rem;
+}
+
+/* posts */
+.post {
+    min-height: 60px;
+    margin-bottom: 1rem;
+}
+.post header {
+    color: #999;
+    font-size: 0.8rem;
+}
+.post-user-avatar {
+    margin-right: 1rem;
+}
+.post-user-avatar img {
+    width: 52px;
+    height: 52px;
+}
