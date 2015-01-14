@@ -3,8 +3,8 @@
 // AJAX PRE-FILTER TO SET URL CORRECTLY
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
         //options.url = '..' + options.url;
-        //options.url = 'http://api.danwa.net' + options.url;
-        options.url = 'http://localhost/danwa-api/public' + options.url;
+        options.url = 'http://api.danwa.net' + options.url;
+        //options.url = 'http://localhost/danwa-api/public' + options.url;
     });
 
 // ROUTES INITIALIZE
