@@ -62,9 +62,7 @@
             _.bindAll(this, 'render');
         },
         render: function() {
-            setTimeout(function() {
-        	addNotification({type: 'warning', text: 'page not found'});
-            }, 500);
+            addNotification({type: 'warning', text: 'page not found'});
         }
     });
     var notFound = new NotFound();
@@ -93,10 +91,11 @@ $(function() {
 
 // UTILITY FUNCTIONS
 function addNotification(notification) {
-    console.log($('#template-notification').html());
-    var template = _.template($('#template-notification').html());
-    var templateHtml = template({notification: notification});
-    $('.notifications').prepend(templateHtml);
+    setTimeout(function() {
+        var template = _.template($('#template-notification').html());
+        var templateHtml = template({notification: notification});
+        $('.notifications').prepend(templateHtml);
+    }, 1);
 }
 
 function openModalPopover(element) {
