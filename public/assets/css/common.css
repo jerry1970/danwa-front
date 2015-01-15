@@ -35,7 +35,7 @@ a:link, a:visited {
 /* header */
 .site-header {
     margin-bottom: 1.5rem;
-    padding: 8px 0;
+    padding: 8px 0 2px 0;
     
     background-color: #4f2391;
 }
@@ -48,6 +48,7 @@ a:link, a:visited {
 .site-header nav {
     float: right;
     font-size: 1.5em;
+    margin-top: -2px;
     
     color: rgba(255, 255, 255, 0.4);
 }
