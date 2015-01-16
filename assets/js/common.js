@@ -117,9 +117,6 @@ function openModalPopover(element) {
         $('.modal-popover').remove();
         var popover = $('.modal-popover-prototype').clone();
         
-        // calculate the width based on the source's requested width, but including padding
-        var actualWidth = source.data('modal-width') + $()
-        
         // do most of the settings, but keep it hidden until it's been appended
         popover.removeClass('.modal-popover-prototype');
         popover.addClass('modal-popover ' + element.data('source-id'));
