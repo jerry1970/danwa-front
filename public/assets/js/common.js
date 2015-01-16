@@ -117,21 +117,35 @@ function openModalPopover(element) {
         $('.modal-popover').remove();
         var popover = $('.modal-popover-prototype').clone();
         
+        // calculate the width based on the source's requested width, but including padding
+        var actualWidth = source.data('modal-width') + $()
+        
         // do most of the settings, but keep it hidden until it's been appended
         popover.removeClass('.modal-popover-prototype');
         popover.addClass('modal-popover ' + element.data('source-id'));
         popover.css({
-            top: element.offset().top + element.height()
+            top: element.offset().top + element.height() + 6,
+            width: source.data('modal-width'),
+            left: element.offset().left - (source.data('modal-width') / 2) + 12
         });
         popover.html(source.html());
         popover.hide();
         
         $('body').append(popover);
         
-        // now that it's appended, we can get the width, set the left offset & show
-        popover.css({
-            left: element.offset().left - (popover.width() / 2)
-        })
+        // check the screen width and see if we need to override some things
+        if ($(window).width() < 800) {
+            popover.addClass('mobile');
+            popover.css({
+        	left: 10,
+        	right: 10,
+        	width: 'auto'
+            });
+        } else {
+            popover.removeClass('mobile');
+            popover.css({
+            });
+        }
         popover.show();
     }
 } 
