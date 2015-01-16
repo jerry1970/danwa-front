@@ -76,6 +76,11 @@ a:link, a:visited {
     border: 1px solid #bbb;
     margin-top: 8px;
 }
+.modal-popover.mobile {
+    left: 10px !important;
+    right: 10px !important;
+    width: auto !important;
+}
 .modal-popover:not(.mobile):after {
     content: '';
     position: absolute;

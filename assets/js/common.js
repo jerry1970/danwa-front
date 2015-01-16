@@ -93,6 +93,18 @@ $(function() {
     $('.modal-popover-link').on('click', function() {
         openModalPopover($(this));
     });
+    
+    // mobile check & popovers
+    $(window).on('resize', function() {
+        console.log(checkMobileWidth());
+        if (checkMobileWidth()) {
+            $('.modal-popover').addClass('mobile');
+            console.log('on');
+        } else {
+            $('.modal-popover').removeClass('mobile');
+            console.log('off');
+        }
+    });
 });
 
 // UTILITY FUNCTIONS
@@ -117,32 +129,27 @@ function openModalPopover(element) {
         $('.modal-popover').remove();
         var popover = $('.modal-popover-prototype').clone();
         
-        // do most of the settings, but keep it hidden until it's been appended
-        popover.removeClass('.modal-popover-prototype');
+        popover.removeClass('modal-popover-prototype');
         popover.addClass('modal-popover ' + element.data('source-id'));
+        popover.html(source.html());
         popover.css({
             top: element.offset().top + element.height() + 6,
             width: source.data('modal-width'),
             left: element.offset().left - (source.data('modal-width') / 2) + 12
         });
-        popover.html(source.html());
-        popover.hide();
-        
-        $('body').append(popover);
         
         // check the screen width and see if we need to override some things
-        if ($(window).width() < 800) {
+        if (checkMobileWidth()) {
             popover.addClass('mobile');
-            popover.css({
-        	left: 10,
-        	right: 10,
-        	width: 'auto'
-            });
-        } else {
-            popover.removeClass('mobile');
-            popover.css({
-            });
         }
-        popover.show();
+        
+        $('body').append(popover);
     }
-} 
+}
+
+function checkMobileWidth() {
+    if ($(window).width() < 800) {
+        return true;
+    }
+    return false;
+}
