@@ -82,7 +82,6 @@ var targets = {
     });
 
 // START BACKBONE HISTORY
-if (!Backbone.history.start()) router.navigate('404', {trigger:true});
 
 // DOCUMENT READY
 $(function() {
@@ -93,16 +92,15 @@ $(function() {
     $('.modal-popover-link').on('click', function() {
         openModalPopover($(this));
     });
+
+    if (!Backbone.history.start()) router.navigate('404', {trigger:true});
 });
 
 // UTILITY FUNCTIONS
 function addNotification(notification) {
-    // we need the timeout to pull it from the flow, to make sure that the template has rendered
-    setTimeout(function() {
-        var template = _.template($('#template-notification').html());
-        var templateHtml = template({notification: notification});
-        $('.notifications').prepend(templateHtml);
-    }, 1);
+    var template = _.template($('#template-notification').html());
+    var templateHtml = template({notification: notification});
+    $('.notifications').prepend(templateHtml);
 }
 
 function openModalPopover(element) {
