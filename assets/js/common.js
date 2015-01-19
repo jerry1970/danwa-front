@@ -1,151 +1,107 @@
 // danwa common.js, 2014
 
-// SET SOME DEFAULT TARGET ELEMENTS
-var targets = {
-    page: $('.page'),
-    header: $('.site-header')
-}
+//                    var template = _.template($('#template-post-list').html());
+//
+//                    targets.page.html(template({
+//                        'posts': posts.attributes.data.posts
+//                    }));
 
-// AJAX PRE-FILTER TO SET URL CORRECTLY
-    $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-        //options.url = '..' + options.url;
-        options.url = 'http://api.danwa.net' + options.url;
-        //options.url = 'http://localhost/danwa-api/public' + options.url;
-    });
-
-// ROUTES INITIALIZE
-    var Router = Backbone.Router.extend({
-        routes: {
-            '': 'home',
-            '404': 'notFound'
-        }
-    })
-    var router = new Router();
-
-// MODELS & COLLECTIONS
-    var Users = Backbone.Collection.extend({
-        url: '/v1/users'
-    });
-    var AllPosts = Backbone.Collection.extend({
-    initialize: function(models, options) {
-        this.url = '/v1/consolidated/' + options.id + '/allposts';
+// set hash globally to current hash
+var hash = window.location.hash;
+var urlBase = 'http://api.danwa.net/v1/';
+var target;
+var routes = {
+    '': {
+        'func': 'getHome'
+    },
+    'user': {
+        'func': 'getUser',
+        'param': 'id'
+    },
+    'settings': {
+        'func': 'getSettings'
     }
-    });
-    var Posts = Backbone.Collection.extend({
-        url: '/v1/posts'
-    });
-    
-// VIEWS
-    var PageHome = Backbone.View.extend({
-        initialize: function(){
-            _.bindAll(this, 'render');
-        },
-        render: function() {
-            var allPosts = new AllPosts([], {id: '54b6e115d6456'});
-            allPosts.fetch({
-                success: function(posts) {
-                    // by shifting we get the actual model
-                    var posts = posts.shift();
-                    var template = _.template($('#template-post-list').html());
-
-                    targets.page.html(template({
-                        'posts': posts.attributes.data.posts
-                    }));
-                    targets.page.animate({
-                        'opacity': 1
-                    });
-                },
-                error: function() {
-                    addNotification({type: 'danger', text: 'api not available'});
-                }
-            });
-        }
-    });
-    var pageHome = new PageHome();
-
-    var NotFound = Backbone.View.extend({
-        initialize: function(){
-            _.bindAll(this, 'render');
-        },
-        render: function() {
-            addNotification({type: 'warning', text: 'page not found'});
-        }
-    });
-    var notFound = new NotFound();
-    
-// ROUTE HANDLING
-    router.on('route:home', function() {
-        pageHome.render();
-    });
-    router.on('route:notFound', function() {
-        notFound.render();
-    });
-
-// START BACKBONE HISTORY
-
-// DOCUMENT READY
+}
 $(function() {
-    $('.notifications').on('click', '.notification .close', function() {
-        $(this).parent().remove();
-    });
-    
-    $('.modal-popover-link').on('click', function() {
-        openModalPopover($(this));
-    });
-
-    if (!Backbone.history.start()) router.navigate('404', {trigger:true});
-    
-    // mobile check & popovers
-    $(window).on('resize', function() {
-        console.log(checkMobileWidth());
-        if (checkMobileWidth()) {
-            $('.modal-popover').addClass('mobile');
-        } else {
-            $('.modal-popover').removeClass('mobile');
-        }
+    // set the target
+    target = $('.page');
+    // route the current hash
+    route(window.location.hash);
+    // and recognize hash changes
+    $(window).on('hashchange', function() {
+        route(window.location.hash);
     });
 });
 
-// UTILITY FUNCTIONS
-function addNotification(notification) {
-    var template = _.template($('#template-notification').html());
-    var templateHtml = template({notification: notification});
-    $('.notifications').prepend(templateHtml);
-}
-
-function openModalPopover(element) {
-    var source = $('#' + element.data('source-id'));
-
-    if ($('.modal-popover.' + element.data('source-id')).length > 0) {
-        $('.modal-popover').remove();
-        return;
+function route(hash) {
+    /* future plan
+     * 
+     * var routes = {
+     *     '': 'getHome',
+     *     'user/{username}': getUser
+     * }
+     * 
+     * where the 'router' splits the hash (i.e. '#/user/devvoh') into its constituent parts
+     * 
+     * So we SPLIT the key, and we SPLIT the hash
+     * 
+     *  key after split: ['user', '{username}']
+     * hash after split: ['user', 'devvoh']
+     * 
+     * remove 'devvoh' from hash since we expect a parameter value here, and replace it with the corresponding
+     * parameter from the key (index: 1 equals '{username}'). Now our hash is ['user', '{username}'] again, and if
+     * we combine it, we get 'user/{username}', which we can directly match.
+     * 
+     * since we now know we have a parameter value that corresponds with username, we will pass an object to the 
+     * function getUser(), consisting of {'username': 'devvoh'}
+     * 
+     * accepted: '#/user/{username}'
+     *    given: '#/user/devvoh'
+     *  outcome: getUser({'username': 'devvoh'});
+     *  
+     * accepted: '#/test/{id}/{type}'
+     *    given: '#/test/123/super'
+     *  outcome: getTest({'id': '123', 'type': 'super'});
+     * 
+     * */
+    var routeKey = '';
+    var routeParam = '';
+    if (hash.length > 0) {
+        hashSplit = hash.split('/');
+        // remove the shebang
+        hashSplit.shift()
+        // the first of 2 params is the key
+        routeKey = hashSplit.shift();
+        // and the second must be an id of some sort
+        routeParam = hashSplit.pop();
     }
     
-    if (source.length > 0) {
-        $('.modal-popover').remove();
-        var popover = $('.modal-popover-prototype').clone();
-        
-        popover.removeClass('modal-popover-prototype');
-        popover.addClass('modal-popover ' + element.data('source-id'));
-        popover.html(source.html());
-        popover.css({
-            top: element.offset().top + element.height() + 6,
-            width: source.data('modal-width'),
-            left: element.offset().left - (source.data('modal-width') / 2) + 12
-        });
-        
-        // check the screen width and see if we need to override some things
-        if (checkMobileWidth()) {
-            popover.addClass('mobile');
-        }
-        
-        $('body').append(popover);
+    // default function is getNotFound()
+    var func = window['getNotFound'];
+     
+    if (routes[routeKey] !== undefined) {
+        func = window[routes[routeKey].func];
     }
+    func(routeParam);
 }
 
-function checkMobileWidth() {
-    if ($(window).width() < 800) {
-        return true;
-    }
-    return false;
+function getHome(param) {
+    $.get(urlBase + 'consolidated/x/allposts', function(result) {
+        var template = _.template($('#template-post-list').html());
+        target.html(template({
+            'posts': result.data.posts
+        }));
+    });
+}
+function getUser(param) {
+    var template = _.template($('#template-user-profile').html());
+    target.html(template({
+        'username': param
+    }));
+}
+function getSettings() {
+    target.html('Settings here');
+}
+function getNotFound() {
+    target.html('404 - page not found');
 }

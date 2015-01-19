@@ -11,9 +11,6 @@ html, body {
     font-weight: 300;
     font-size: 11pt;
 }
-ul {
-    list-style-type: none;
-}
 a {
     color: #4f2391;
 }
@@ -21,130 +18,48 @@ a:link, a:visited {
     text-decoration: none;
 }
 
-/* overrule the default container class @ max width */
-@media (min-width: 992px) {
-    .container {
-        width: 750px;
-    }
+.width-site {
+    width: 650px;
+    max-width: 95%;
+    margin: auto;
 }
 
-/* header */
 .site-header {
-    margin-bottom: 1.5rem;
-    padding: 8px 0 2px 0;
-    
     background-color: #4f2391;
+    line-height: 64px;
+    height: 64px;
+    overflow: hidden;
 }
-.site-header .logo {
-    float: left;
-    width: 26px;
-    
-    fill: #fff;
+.site-header svg {
+    margin-top: 12px;
+    height: 48px;
+    fill: white;
 }
 .site-header nav {
+    font-size: 1.4em;
     float: right;
-    font-size: 1.5em;
-    margin-top: -2px;
-    
-    color: rgba(255, 255, 255, 0.4);
 }
-.site-header nav i.fa:hover {
-    color: rgba(255, 255, 255, 1);
-    cursor: pointer;
+.site-header nav i {
+    color: rgba(255, 255, 255, 0.5);
+}
+.site-header nav i:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
-/* notifications */
-.notification {
-    line-height: 2rem;
-    margin: 0;
-    padding: 0 1rem;
-    border: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
-    border-radius: 0;
+/* page */
+.page {
+    margin-top: 10px;
 }
-.notification .close {
-    margin-top: 0.35rem;
-}
-
-/* modal popover */
-.modal-popover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #fff;
-    padding: 0.5rem 0.75rem;
-    border: 1px solid #bbb;
-    margin-top: 8px;
-}
-.modal-popover.mobile {
-    left: 10px !important;
-    right: 10px !important;
-    width: auto !important;
-}
-.modal-popover:not(.mobile):after {
-    content: '';
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    margin-left: -8px;
-    width: 0;
-    height: 0;
-    border: 6px solid transparent;
-    border-bottom: 6px solid #999;
-}
-.modal-popover.modal-popover-source-post textarea {
-    height: 100px;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
-.modal-popover.modal-popover-source-settings ul {
-    margin: -0.5rem -0.75rem;
-}
-.modal-popover.modal-popover-source-settings li {
-    padding: 0;
-    
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.modal-popover.modal-popover-source-settings li a {
-    display: block;
-    padding: 0.5rem 1rem;
-}
-.modal-popover.modal-popover-source-settings li a:hover {
-    background: rgba(0, 0, 0, 0.05);
-    text-decoration: none;
-}
-.modal-popover.modal-popover-source-settings li:last-child {
-    border: 0;
-}
-
-/* posts */
+/* post styles */
 .post {
-    min-height: 60px;
-    margin-bottom: 1rem;
-}
-.post header {
-    color: #999;
-    font-size: 0.8rem;
+    display: block;
+    clear: both;
+    padding: 10px 0;
 }
 .post-user-avatar {
-    margin-right: 1rem;
+    width: 64px;
+    margin-right: 10px;
 }
 .post-user-avatar img {
-    width: 52px;
-    height: 52px;
-}
-
-/* animation class */
-.animate-fast {
-    transition: all 0.1s ease-out;
-}
-
-/* default classes */
-.width-full {
     width: 100%;
-}
-
-/* overrules */
-textarea {
-    resize: none;
 }

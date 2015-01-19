@@ -8,12 +8,13 @@
         <link rel="stylesheet" type="text/css" media="all" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700">
         <link rel="stylesheet" type="text/css" media="all" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
         
-        <!-- vendor css/js -->
-        <link rel="stylesheet" type="text/css" media="all"  href="./assets/css/vendor.min.css">
-        <script src="./assets/js/vendor.js" type="text/javascript"></script>
-        
-        <!-- danwa's common css/js -->
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" media="all"  href="./assets/css/lib/dv-import.css">
         <link rel="stylesheet" type="text/css" media="all"  href="./assets/css/common.css">
+        <!-- javascript -->
+        <script src="./bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="./bower_components/underscore/underscore-min.js" type="text/javascript"></script>
+        <script src="./assets/js/common.js" type="text/javascript"></script>
         
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     </head>
@@ -24,8 +25,8 @@
         <div class="modal-popover-prototype"></div>
         
         <header class="site-header">
-            <div class="container">
-                <a href="./index.html">
+            <div class="width-site">
+                <a href="./">
                     <svg class="logo" viewbox="0 0 26 32">
                         <!-- borders -->
                         <rect class="border" x="0" y="0" width="16" height="6" />
@@ -44,25 +45,25 @@
                 </a>
                 
                 <nav>
-                    <i class="fa fa-edit modal-popover-link" data-source-id="modal-popover-source-post"></i>
-                    <i class="fa fa-gear modal-popover-link" data-source-id="modal-popover-source-settings"></i>
+                    <i class="fa fa-edit"></i>
+                    <a href="#/settings"><i class="fa fa-gear"></i></a>
                 </nav>
             </div>
         </header>
         
-        <section class="page container" id="page" style="opacity: 0;">
+        <section class="page width-site">
         </section>
         
         <script type="text/template" id="template-post-list">
             <% _.each(posts, function(post) { %>
             <article class="post">
-                <aside class="post-user-avatar pull-left">
+                <aside class="post-user-avatar float-left">
                     <% if (post.user.avatar.length > 0) { %>
                     <img class="user-avatar" src="data:image/png;base64,<%= post.user.avatar %>" />
                     <% } %>
                 </aside>
                 <header>
-                    <a href="#<%= post.user.username %>">
+                    <a href="#/user/<%= post.user.username %>">
                         <strong class="post-user-username">@<%= post.user.username %></strong>
                     </a>
                     <span class="post-created-at"><%= post.created_at %></span>
@@ -73,25 +74,26 @@
             </article>
             <% }); %>
         </script>
+        <script type="text/template" id="template-user-profile">
+            <article class="post">
+                <p>
+                    Profile for user "<%= username %>" should come here.
+                </p>
+                <br />
+                <p>
+                    This requires [1]: api.danwa.net/users/{username}
+                </p>
+                <p>
+                    This requires [2]: api.danwa.net/users/{username}/posts
+                </p>
+            </article>
+        </script>
         <script type="text/template" id="template-notification">
             <div class="notification alert alert-<%= notification.type %>">
                 <a href="#" class="close">&times;</a>
                 <strong>Error:</strong> <%= notification.text %>
             </div>
         </script>
-        <script type="text/template" id="modal-popover-source-settings" data-modal-width="100">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#settings">Settings</a></li>
-                <li><a href="#logout">Log out</a></li>
-            </ul>
-        </script>
-        <script type="text/template" id="modal-popover-source-post" data-modal-width="300">
-            <textarea class="form-control" placeholder="What's up?"></textarea>
-            <button type="submit" class="btn width-full">Post</button>
-        </script>
-        
-        <script src="./assets/js/common.js" type="text/javascript"></script>
         
     </body>
 

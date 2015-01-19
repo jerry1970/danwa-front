@@ -1,0 +1,216 @@
+@CHARSET "UTF-8";
+
+/*******************
+ * dv-classes.css provides default classes to use for specific goals
+ */
+
+/* system colors */
+    .color-alert {
+        color: #ee0000 !important;
+    }
+    .background-alert {
+        background: #f5bcbc !important;
+    }
+    .color-warning {
+        color: #e37900 !important;
+    }
+    .background-warning {
+        background: #f5c793 !important;
+    }
+    .color-correct {
+        color: #4dbd71 !important;
+    }
+    .background-correct {
+       background: #bcf5ce !important;
+    }
+    .color-notice {
+        color: #777777 !important;
+    }
+    .background-notice {
+        background: #ddd !important;
+    }
+
+/* base colors (white/black/grey) */
+    .color-black {
+        color: black !important;
+    }
+    .color-white {
+        color: white !important;
+    }
+    .color-grey-light {
+        color: #ccc !important;
+    }
+    .color-grey {
+        color: #999 !important;
+    }
+    .color-grey-dark {
+        color: #777 !important;
+    }
+    .color-grey-darkest {
+        color: #555 !important;
+    }
+
+/* base background colors */
+    .background-black {
+        background: black !important;
+    }
+    .background-white {
+        background: white !important;
+    }
+    .background-grey-light {
+        background: #ccc !important;
+    }
+    .background-grey {
+        background: #999 !important;
+    }
+    .background-grey-dark {
+        background: #777 !important;
+    }
+    .background-grey-darkest {
+        background: #555 !important;
+    }
+
+/* colors */
+    .color-red-light {
+        color: #e65757 !important;
+    }
+    .color-red {
+        color: #dd0000 !important;
+    }
+    .color-red-dark {
+        color: #990000 !important;
+    }
+
+    .color-green-light {
+        color: #68e868 !important;
+    }
+    .color-green {
+        color: #29d529 !important;
+    }
+    .color-green-dark {
+        color: #0b9c0b !important;
+    }
+
+    .color-blue-light {
+        color: #69b9ef !important;
+    }
+    .color-blue {
+        color: #2097e6 !important;
+    }
+    .color-blue-dark {
+        color: #0970b5 !important;
+    }
+
+    .color-orange-light {
+        color: #ffc05c !important;
+    }
+    .color-orange {
+        color: #ff9c00 !important;
+    }
+    .color-orange-dark {
+        color: #de7607 !important;
+    }
+
+    .color-yellow-light {
+        color: #ffee82 !important;
+    }
+    .color-yellow {
+        color: #fcdB05 !important;
+    }
+    .color-yellow-dark {
+        color: #f7ca00 !important;
+    }
+
+/* background colors */
+    .background-red-light {
+        background: #e65757 !important;
+    }
+    .background-red {
+        background: #ee0000 !important;
+    }
+    .background-red-dark {
+        background: #990000 !important;
+    }
+
+    .background-green-light {
+        background: #68e868 !important;
+    }
+    .background-green {
+        background: #29d529 !important;
+    }
+    .background-green-dark {
+        background: #0b9c0b !important;
+    }
+
+    .background-blue-light {
+        background: #69b9ef !important;
+    }
+    .background-blue {
+        background: #2097e6 !important;
+    }
+    .background-blue-dark {
+        background: #0970b5 !important;
+    }
+
+    .background-orange-light {
+        background: #ffc05c !important;
+    }
+    .background-orange {
+        background: #ff9c00 !important;
+    }
+    .background-orange-dark {
+        background: #de7607 !important;
+    }
+
+    .background-yellow-light {
+        background: #ffee82 !important;
+    }
+    .background-yellow {
+        background: #fcdB05 !important;
+    }
+    .background-yellow-dark {
+        background: #f7ca00 !important;
+    }
+
+/* brand colors - these are not decided by us */
+    .color-brand-twitter {
+        color: #00aced !important;
+    }
+    .background-brand-twitter {
+        background: #00aced !important;
+    }
+
+    .color-brand-linkedin {
+        color: #007bb6 !important;
+    }
+    .background-brand-linkedin {
+        background: #007bb6 !important;
+    }
+
+    .color-brand-facebook {
+        color: #3b5998 !important;
+    }
+    .background-brand-facebook {
+        background: #3b5998 !important;
+    }
+
+    .color-brand-google-plus {
+        color: #dd4b39 !important;
+    }
+    .background-brand-google-plus {
+        background: #dd4b39 !important;
+    }
+
+    .color-brand-instagram {
+        color: #3f729b !important;
+    }
+    .background-brand-instagram {
+        background: #3f729b !important;
+    }
+
+    .color-brand-youtube {
+        color: #bb0000 !important;
+    }
+    .background-brand-youtube {
+        background: #bb0000 !important;
+    }

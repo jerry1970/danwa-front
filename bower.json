@@ -4,7 +4,7 @@
   "authors": [
     "Robin de Graaf <hello@devvoh.com>"
   ],
-  "description": "danwa front-end, using backbone/underscore/jquery and the danwa api",
+  "description": "danwa front-end, using underscore/jquery and the danwa api",
   "license": "MIT",
   "homepage": "http://devvoh.com",
   "private": true,
@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "jquery": "~2.1.3",
-    "backbone": "~1.1.2",
-    "bootstrap": "~3.3.1"
+    "underscore": "~1.7.0"
   }
 }
