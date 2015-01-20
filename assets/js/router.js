@@ -22,7 +22,7 @@ function Router (routes) {
     this.routes = routes;
     
     this.getRoutes = function() {
-        return this.routelist;
+        return this.routes;
     }
     this.setRoutes = function(routes) {
         this.routes = routes;
@@ -31,7 +31,7 @@ function Router (routes) {
     // TODO split this into two functions: route & find. route calls find, then executes. find returns
     //      an object with function and parameters.
     this.route = function(url) {
-        var routes = this.routes;
+        var routes = this.getRoutes();
         var func;
         var params = {};
         
@@ -42,8 +42,8 @@ function Router (routes) {
             func = window[routes[url].controller];
         } else {
             // now we need to loop through the routes with params and break them up to compare & rebuild
-            Object.keys(routes).forEach(function(key) {
-                if (key.indexOf('{') >= 0 && func == undefined) {
+            Object.keys(routes).some(function(key) {
+                if (key.indexOf('{') >= 0) {
                     // in case a previous route failed, clear params
                     params = {};
                     // this is a route with params, split it
@@ -60,8 +60,11 @@ function Router (routes) {
                             urlSplit[i] = routeSplit[i];
                         }
                         if (urlSplit.join('/') == routeSplit.join('/')) {
-                            // set the funcs
+                            // we now have the same-ified url & route, if they match
+                            // now, we know we've got the right one, so set the func
                             func = window[routes[key].controller];
+                            // and stop iterating
+                            return true;
                         }
                     }
                 }
