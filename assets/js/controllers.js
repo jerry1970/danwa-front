@@ -1,5 +1,5 @@
 /**
- * danwa controllers.js, 2015, Robin de Graaf
+ * danwa controllers.js, 2015, Robin de Graaf, devvoh.com
  */
 
 function getHome(param) {

@@ -1,5 +1,5 @@
 /**
- * danwa common.js, 2015, Robin de Graaf
+ * danwa common.js, 2015, Robin de Graaf, devvoh.com
  */
 
 // set hash globally to current hash
@@ -42,11 +42,11 @@ $(function() {
     target = $('.page');
     
     // route the current hash
-    router.find(window.location.hash);
+    router.route(window.location.hash);
     
     // and recognize hash changes
     $(window).on('hashchange', function() {
-        router.find(window.location.hash);
+        router.route(window.location.hash);
     });
     
 });

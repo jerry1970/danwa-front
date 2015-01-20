@@ -1,7 +1,5 @@
 /*
- * router.js
- *
- * 2015, Robin de Graaf, devvoh.com
+ * router.js, 2015, Robin de Graaf, devvoh.com
  * 
  * use      var router = new Router(routes);
  * 
@@ -15,6 +13,9 @@
  *         'controller': 'paramController',
  *     }
  * }
+ * 
+ * NOTE: Routes are entered into the route list WITHOUT the #/ prefix. So 'test': {} matches the
+ *       actual url #/test. For home, simply use '' as the key.
  */
 
 function Router () {
@@ -26,7 +27,7 @@ function Router () {
         this.routes = routes;
     }
     
-    this.find = function(url) {
+    this.route = function(url) {
         var routes = this.routes;
         var func;
         var params = {};
