@@ -16,8 +16,8 @@ var routes = {
     'settings': {
         'controller': 'getSettings'
     },
-    'test/{id}/{type}/super/{again}': {
-        'controller': 'getTest'
+    'post/{id}': {
+        'controller': 'getPost'
     }
 }
 var collections = {
@@ -51,11 +51,11 @@ $(function() {
     
 });
 
-function getApiResult(collection, params) {
+function getApiResult(collection) {
+    var url = urlBase + collections[collection].url;
     return $.ajax({
         type: "GET",
-        url: urlBase + collections[collection].url,
-        data: params,
+        url: url,
         async: false
     }).responseJSON.data;
 }
