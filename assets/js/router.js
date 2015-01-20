@@ -1,7 +1,7 @@
 /*
  * router.js, 2015, Robin de Graaf, devvoh.com
  * 
- * use      var router = new Router(routes);
+ * use          var router = new Router(routes);
  * 
  * routes should be an object with elements laid out like so:
  * 
@@ -18,7 +18,8 @@
  *       actual url #/test. For home, simply use '' as the key.
  */
 
-function Router () {
+function Router (routes) {
+    this.routes = routes;
     
     this.getRoutes = function() {
         return this.routelist;

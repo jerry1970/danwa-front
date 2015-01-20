@@ -33,8 +33,7 @@ var collections = {
 }
 
 // instantiate router with routes
-var router = new Router();
-router.setRoutes(routes);
+var router = new Router(routes);
 
 $(function() {
     
