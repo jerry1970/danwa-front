@@ -27,6 +27,8 @@ function Router () {
         this.routes = routes;
     }
     
+    // TODO split this into two functions: route & find. route calls find, then executes. find returns
+    //      an object with function and parameters.
     this.route = function(url) {
         var routes = this.routes;
         var func;
