@@ -17,8 +17,7 @@
  * }
  */
 
-function Router (routes) {
-    this.routes = routes;
+function Router () {
     
     this.getRoutes = function() {
         return this.routelist;
@@ -32,10 +31,6 @@ function Router (routes) {
         var func;
         var params = {};
         
-        if (typeof notFound == 'function') {
-            func = window['notFound'];
-        }
-        
         url = this.stripHash(url);
         
         if (routes[url] !== undefined) {
@@ -44,7 +39,7 @@ function Router (routes) {
         } else {
             // now we need to loop through the routes with params and break them up to compare & rebuild
             Object.keys(routes).forEach(function(key) {
-                if (key.indexOf('{') >= 0) {
+                if (key.indexOf('{') >= 0 && func == undefined) {
                     // in case a previous route failed, clear params
                     params = {};
                     // this is a route with params, split it
@@ -68,13 +63,17 @@ function Router (routes) {
                 }
             });
         }
+
+        if (typeof notFound == 'function' && typeof func !== 'function') {
+            func = window['notFound'];
+        }
         
         // if func is undefined, we do not have a function to call
         if (func !== undefined) {
             func(params);
             return;
         }
-        return '404 - route not found. Implement a \'notFound\' function to catch this according to your application';
+        return 'route not found';
         
     };
 
@@ -87,4 +86,6 @@ function Router (routes) {
         }
         return url;
     }
+    
+    return this;
 }

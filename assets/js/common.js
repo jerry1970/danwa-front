@@ -22,7 +22,8 @@ var routes = {
 }
 
 // instantiate router with routes
-var router = new Router(routes);
+var router = new Router();
+router.setRoutes(routes);
 
 $(function() {
     
