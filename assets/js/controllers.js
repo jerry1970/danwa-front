@@ -3,15 +3,13 @@
  */
 
 function getHome(param) {
-    $.get(urlBase + 'consolidated/x/allposts', function(result) {
-        var template = _.template($('#template-post-list').html());
-        target.html(template({
-            'posts': result.data.posts
-        }));
-    });
+    var data = getApiResult('allPosts', {});
+    var template = _.template($('#template-post-list').html());
+    target.html(template({
+        'posts': data.posts
+    }));
 }
 function getUser(params) {
-    console.log(params);
     var template = _.template($('#template-user-profile').html());
     target.html(template({
         'username': params.username

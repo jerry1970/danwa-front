@@ -20,6 +20,17 @@ var routes = {
         'controller': 'getTest'
     }
 }
+var collections = {
+    'user': {
+        'url': 'users'
+    },
+    'post': {
+        'url': 'posts'
+    },
+    'allPosts': {
+        'url': 'consolidated/x/allposts'
+    }
+}
 
 // instantiate router with routes
 var router = new Router();
@@ -39,3 +50,12 @@ $(function() {
     });
     
 });
+
+function getApiResult(collection, params) {
+    return $.ajax({
+        type: "GET",
+        url: urlBase + collections[collection].url,
+        data: params,
+        async: false
+    }).responseJSON.data;
+}
